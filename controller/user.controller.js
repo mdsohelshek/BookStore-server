@@ -51,8 +51,8 @@ export const login = async (req, res) => {
         console.log(token);
         // console.log("token set")
         res.cookie('Bookstore_auth', token, {
-            httpOnly: true,
-            sameSite: 'Strict',
+            httpOnly: false,
+            sameSite: 'None',
             secure: true,
             expires: new Date(Date.now() + 2.592e+9),
             path: '/'
@@ -75,8 +75,8 @@ export const login = async (req, res) => {
 export const logout = async (req, res) => {
     console.log("logout")
     res.clearCookie('Bookstore_auth', {
-        httpOnly: true,
-        sameSite: 'Strict',
+        httpOnly: false,
+        sameSite: 'None',
         secure: true,
         path: '/', // Ensure path matches the one used when setting the cookie
       });
