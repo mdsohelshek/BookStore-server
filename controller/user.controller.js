@@ -47,13 +47,15 @@ export const login = async (req, res) => {
         if (!user || !isMatch) {
             return res.status(400).json({ message: "Invalid username or password" });
         }
-        const token = JWT.sign({ id:user._id }, process.env.JWT_Password)
+        const token = JWT.sign({ id: user._id }, process.env.JWT_Password)
         console.log(token);
-        console.log("token set")
+        // console.log("token set")
         res.cookie('Bookstore_auth', token, {
             httpOnly: true,
-            sameSite: 'Strict', 
-            expires: new Date(Date.now() + 2.592e+9)}) //30 days
+            sameSite: 'None',
+            expires: new Date(Date.now() + 2.592e+9)
+        })
+        console.log("token set")
         res.status(200).json({
             message: "Login successful",
             // token,
@@ -76,6 +78,6 @@ export const logout = async (req, res) => {
         sameSite: 'Strict',
         expires: new Date(Date.now(0)), // Use the same SameSite attribute used when setting the cookie
         path: '/',  // Ensure the path matches the one used when setting the cookie
-      });
+    });
     res.json({ message: 'Logged out successfully' });
 };
