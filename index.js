@@ -12,7 +12,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 const corsOptions = {
-    origin: 'https://book-store-client-pink.vercel.app/', // Allow this origin
+    origin: 'https://book-store-client-pink.vercel.app', // Allow this origin
     credentials: true, // Allow credentials
   };
 app.use(cors(corsOptions));
