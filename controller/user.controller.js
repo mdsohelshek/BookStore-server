@@ -54,7 +54,8 @@ export const login = async (req, res) => {
             httpOnly: true,
             sameSite: 'Strict',
             secure: true,
-            expires: new Date(Date.now() + 2.592e+9)
+            expires: new Date(Date.now() + 2.592e+9),
+            path: '/'
         })
         console.log("token set")
         res.status(200).json({
@@ -73,12 +74,11 @@ export const login = async (req, res) => {
 };
 export const logout = async (req, res) => {
     console.log("logout")
-    res.clearCookie('token', {
-        httpOnly: true,  // Ensure to use the same attributes used when setting the cookie
-        secure: true, // Ensure this matches the secure attribute used
+    res.clearCookie('Bookstore_auth', {
+        httpOnly: true,
         sameSite: 'Strict',
-        expires: new Date(Date.now(0)), // Use the same SameSite attribute used when setting the cookie
-        // path: '/',  // Ensure the path matches the one used when setting the cookie
-    });
+        secure: true,
+        path: '/', // Ensure path matches the one used when setting the cookie
+      });
     res.json({ message: 'Logged out successfully' });
 };
