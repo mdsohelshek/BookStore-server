@@ -78,7 +78,7 @@ export const logout = async (req, res) => {
         secure: true, // Ensure this matches the secure attribute used
         sameSite: 'Strict',
         expires: new Date(Date.now(0)), // Use the same SameSite attribute used when setting the cookie
-        path: '/',  // Ensure the path matches the one used when setting the cookie
+        // path: '/',  // Ensure the path matches the one used when setting the cookie
     });
     res.json({ message: 'Logged out successfully' });
 };
