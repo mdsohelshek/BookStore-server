@@ -51,7 +51,7 @@ export const login = async (req, res) => {
         console.log(token);
         // console.log("token set")
         res.cookie('Bookstore_auth', token, {
-            httpOnly: true,
+            httpOnly: false,
             sameSite: 'None',
             expires: new Date(Date.now() + 2.592e+9)
         })
