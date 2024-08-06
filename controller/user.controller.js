@@ -42,13 +42,13 @@ export const login = async (req, res) => {
         const email = req.body.email;
         const password = req.body.password
         const user = await User.findOne({ email })
-        console.log("Login")
+        // console.log("Login")
         const isMatch = await bcryptjs.compare(password, user.password);
         if (!user || !isMatch) {
             return res.status(400).json({ message: "Invalid username or password" });
         }
         const token = JWT.sign({ id: user._id }, process.env.JWT_Password)
-        console.log(token);
+        // console.log(token);
         // console.log("token set")
         res.cookie('Bookstore_auth', token, {
             httpOnly: false,
@@ -57,7 +57,7 @@ export const login = async (req, res) => {
             expires: new Date(Date.now() + 2.592e+9),
             path: '/'
         })
-        console.log("token set")
+        // console.log("token set")
         res.status(200).json({
             message: "Login successful",
             // token,
@@ -73,7 +73,7 @@ export const login = async (req, res) => {
     }
 };
 export const logout = async (req, res) => {
-    console.log("logout")
+    // console.log("logout")
     res.clearCookie('Bookstore_auth', {
         httpOnly: false,
         sameSite: 'None',
